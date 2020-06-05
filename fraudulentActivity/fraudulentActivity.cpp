@@ -3,6 +3,11 @@
  * Puzzle Difficulty: Medium
  * 
  * Initial Thoughts:
+ *	n * O(k log k) where k = days to sort every time
+ *	O(n log k) in a theoritically perfect world but the deque container doesn't support
+ *	O(1) insertion and deleting everywhere
+ *
+ *	so settle for (nk) where I do O(k) insertion for a already sorted container
  *
  */
 #include <vector>
