@@ -38,6 +38,8 @@ int main() {
 	for (int i = 1; i <= n ; i++){
 		int numFish; cin >> numFish;
 		int bitmask = 0;
+		//bit mask where every bit represents a fish
+		//fish n = 2^(n-1)
 		while (numFish--){
 			int a; cin >> a;
 			bitmask |= 1 << (a-1);	
@@ -45,6 +47,7 @@ int main() {
 		fish[i] = bitmask;
 	}
 
+	//set bidirectional edges 
 	while (m--){
 		int u, v, weight; cin >> u >> v >> weight;
 		adj[u].push_back({weight,v});

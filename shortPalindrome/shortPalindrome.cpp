@@ -6,6 +6,9 @@
  *	We can count the unique characters and then use combinatorics to calculate
  *	the end result
  *
+ * Secondary thoughts:
+ *	we can simply brute force to find the best solution
+ *
  */
 #include <vector>
 #include <iostream>
@@ -18,49 +21,25 @@
 #include <math.h>
 using namespace std;
 long long mod = 1000000007u;
-long long choose (int n, int k) {
-	long long i =  1;
-	int kn = n-k;
-	while (n--) {
-		i *= n+1;
-		i %= mod;
-	}
-	while (k--){
-		i /= k+1;
-	}
-	while (kn--){
-		i /= kn+1;
-	}
-	return i;
-}
 int main() {
 	string s; cin >> s;
-	unordered_map <char, int> m;
-	for  (auto letter : s){
-		if (m.find(letter) == m.end()) 
-			m[letter] = 0;
-		m[letter]++;
-	}
-	long long  total = 0;
-	for (auto iter: m){
-		if (iter.second >= 4){
-			total += choose(iter.second , 4);
-			total %= mod;
+	int c1[26];
+	int c2[26][26];
+	int c3[26][26][26];
+	int ans = 0;
+	for (auto c : s) {
+		int letter = c - 'a';
+		for (int i = 0; i < 26; i++){
+			ans += c3[letter][i][i];
+			c3[i][letter][letter] += c2[i][letter];
+			c2[i][letter] += c1[i];
+
+			ans %= mod;
+			c3[i][letter][letter] %= mod;
+			c2[i][letter] %= mod;
 		}
+		c1[letter] += 1;
+		c1[letter] %= mod;
 	}
-	for (auto& i: m) {
-		if (i.second >= 2) 
-			i.second = choose(i.second, 2);
-		else 
-			i.second = 0;
-	}
-	for (auto i = m.begin(); i != m.end();) {
-		int value = i->second;
-		i = m.erase(i);
-		for (auto j : m) {
-			total += (value * j.second);
-			total %= mod;
-		}
-	}
-	cout << total << endl;
+	cout << ans;
 }
