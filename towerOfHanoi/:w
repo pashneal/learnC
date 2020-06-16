@@ -1,0 +1,33 @@
+/*
+ * Puzzle Link: https://www.hackerrank.com/challenges/gena/problem
+ * Puzzle Difficulty: Medium
+ *
+ * Initial Thoughts:
+ *	Might not be able to do any better than a bfs to find the minimum number o fmoves until solve
+ *
+ */
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <stack>
+#include <unordered_map>
+#include <math.h>
+#define INF 0x7FFFFFFF
+#define INFL 0x7FFFFFFFFFFFFFFF
+typedef std::pair<int, int> ipair;
+typedef std::vector<std::vector<int>> board;
+using namespace std;
+
+int main() {
+	int numberDisks; cin >> numberDisks;
+	vector< board >newBoards;
+	vector< board >nextBoards;
+	board nextBoard(numberDisks);
+	for (int i = 0 ; i < numberDisks; i++){
+		int loc; cin >> loc; loc--;
+		nextBoard[loc].insert(nextBoard.begin(),i);
+	}
+}
