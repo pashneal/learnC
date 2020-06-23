@@ -23,6 +23,6 @@ int main() {
 	int q; cin >> q;
 	while (q--){
 		unsigned a; cin >> a;
-		cout << !a << endl;
+		cout << ~a << endl;
 	}
 }
