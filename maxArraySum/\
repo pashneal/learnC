@@ -1,0 +1,40 @@
+/*
+ * Puzzle Link: https://www.hackerrank.com/challenges/max-array-sum/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dynamic-programming
+ * Puzzle Difficulty: Medium
+ *
+ * Initial Thoughts:
+ *	We can safely ignore every negative number except for the largest one
+ *
+ */
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <stack>
+#include <unordered_map>
+#include <math.h>
+#define INF 0x7FFFFFFF
+#define INFL 0x7FFFFFFFFFFFFFFF
+typedef std::pair<int, int> ipair;
+using namespace std;
+
+long maxArraySum(vector<int>&v, vector<long>&dp, int index){
+	if (index >= (int)v.size()) return 0;
+	if (dp[index] != -INFL
+}
+int main() {
+	std::ios::sync_with_stdio(false);
+	int n; cin >> n;
+	vector<int> v(n);
+	int maxNum = -INF;
+	for (int i = 0; i < n; i++){
+		cin >> v[i];
+		maxNum = max(maxNum, v[i]);
+	}
+	vector<long> dp(n, -INFL);
+
+
+
+}

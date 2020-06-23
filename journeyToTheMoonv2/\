@@ -1,0 +1,39 @@
+/*
+ * Puzzle Link: https://www.hackerrank.com/challenges/journey-to-the-moon/problem
+ * Puzzle Difficulty: Medium
+ *
+ * Initial Thoughts:
+ *	Resolving the problem using a more effecient data structure
+ *
+ */
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <stack>
+#include <unordered_map>
+#include <math.h>
+#define INF 0x7FFFFFFF
+#define INFL 0x7FFFFFFFFFFFFFFF
+typedef std::pair<int, int> ipair;
+using namespace std;
+
+unordered_map<int, int> parent;
+void makeSet(int u){
+	if (parent.find(u) == parent.end())
+		parent[u] = u;
+}
+void findRoot(int u){
+	if (parent[u] == u) return u;
+	return parent[u] = findRoot(parent[u]);
+}
+int main() {
+	std::ios::sync_with_stdio(false);
+	int n; cin >> n;
+	vector<int> v(n);
+	for (int i = 0; i < n; i++){
+		cin >> v[i];
+	}
+}
