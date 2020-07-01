@@ -3,8 +3,11 @@
  * Puzzle Difficulty: Medium
  *
  * Initial Thoughts:
- *		Count the number of unique neighbors that are smaller than the given number and
- *		add 1 to it
+ *		Go in the forward direction and make sure that every individual has 
+ *		n + 1 candies or 1
+ *
+ *		Go in the reverse direction and make sure that every individual has
+ *		n + 1 candies or keep the same amount
  *
  */
 #include <vector>
@@ -18,26 +21,32 @@
 #include <math.h>
 #define INF 0x7FFFFFFF
 #define INFL 0x7FFFFFFFFFFFFFFF
-typedef std::pair<int, int> ipair;
+typedef std::pair<long, int> ipair;
 using namespace std;
 
 int main() {
-	int n ; cin >> n;
-	vector<int>candies(n+1,0);
-	for (int i = 0 ; i < n ; i++){
-		cin >> candies[i];
+	long n; cin >> n;
+	vector<long>candies;
+	for (long i = 0 ; i< n ; i++){
+		long input; cin >> input;
+		candies.push_back(input);
 	}
-	vector<int>solution(n,0);
-	solution[0] = 1;
-	for (int i = 1; i < n ; i++){
-		if (solution[i] > solution[i-1]) solution[i] = solution[i-1] + 1;
-		else solution[i] = 1;
+	//give out at least one candy to every person
+	vector<long>results(n, 1);
+	for (long i = 1; i < n; i++){
+		if (candies[i-1] < candies[i])
+			results[i] = results[i-1] + 1;
+
 	}
-	for (int i = n-2; i >= 0; i--){
-		if (solution[i] > solution[i+1]) solution[i] = solution[i+1] + 1;
+	for (long i = n-1; i > 0 ; i--){
+		if (candies[i] < candies[i-1] && (results[i] >= results[i-1])) {
+			results[i-1] = results[i] + 1;
+		}
 	}
-	int total = 0;
-	for (int i = 0 ; i < n; i++)
-		total += solution[i];
-	cout <<total;
+	long total = 0; 
+
+	for (auto i : results) {
+		total += i;
+	}
+	cout << total << endl;
 }
